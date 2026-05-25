@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form, Formik, type FormikHelpers } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import css from './NoteForm.module.css';
 import * as Yup from 'yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -41,12 +41,8 @@ export const NoteForm = ({ onCancel }: NoteFormProps) => {
     },
   });
 
-  const handleSubmit = (values: NoteFormValues, formikHelpers: FormikHelpers<NoteFormValues>) => {
-    createMutation.mutate(values, {
-      onSuccess: () => {
-        formikHelpers.resetForm();
-      },
-    });
+  const handleSubmit = (values: NoteFormValues) => {
+    createMutation.mutate(values);
   };
 
   return (
