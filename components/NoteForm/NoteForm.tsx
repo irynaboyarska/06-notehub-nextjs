@@ -10,7 +10,9 @@ const NoteSchema = Yup.object({
     .max(50, 'Maximum number of characters 50')
     .required('Title is required'),
   content: Yup.string().max(500, 'Maximum number of characters 500'),
-  tag: Yup.string().required('Tag is required'),
+  tag: Yup.string()
+    .required('Tag is required')
+    .oneOf(['Todo', 'Work', 'Personal', 'Meeting', 'Shopping']),
 });
 
 interface NoteFormProps {
